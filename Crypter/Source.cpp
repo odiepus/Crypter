@@ -235,74 +235,48 @@ void encryptData(char *data, int lengths)
 
 			// ror al, 5 will take care of both of these, use for optimization		
 
-			// reverse bit order, crude, needs optimization
+			// reverse bit order
 			xor ebx, ebx
 			push ecx
 			push edx
 			xor ecx, ecx
 			xor edx, edx
 			mov ch, 1
-			mov cl, 1
+			mov cl, 7
 
 
 			REVERSING:
 				add ch, bl
 				mov ah, al
+				and ah, ch			
+				shl ah, cl
+				add dl, ah
+				sub cl, 2
+				mov bl, ch
+				cmp cl, 1
+			jge REVERSING
+
+
+			xor bl, bl
+			mov ch, 16
+			mov cl, 1
+			REVERSING_CONT :
+				add ch, bl
+				mov ah, al
 				and ah, ch
-				xor ebx, ebx
-				shrd ebx, ah, 7
-			
-				add dh, bl
-				xor bl, bl
+				shr ah, cl
+				add dl, ah
 				add cl, 2
 				mov bl, ch
-				cmp cl, 17
-			jne REVERSING
+				cmp cl, 7
+			jle REVERSING_CONT
 
-			
-			
+			mov al, dl
+					
+		    //put back values I stored before reversing bit order
+			pop edx
+			pop ecx
 
-			/*mov ah, al
-			and ah, 00000001b
-			shl ah, 7
-			add bl, ah
-
-			mov ah, al
-			and ah, 00000010b
-			shl ah, 5
-			add bl, ah
-
-			mov ah, al
-			and ah, 00000100b
-			shl ah, 3
-			add bl, ah
-
-			mov ah, al
-			and ah, 00001000b
-			shl ah, 1
-			add bl, ah
-
-			mov ah, al
-			and ah, 00010000b
-			shr ah, 1
-			add bl, ah
-
-			mov ah, al
-			and ah, 00100000b
-			shr ah, 3
-			add bl, ah
-
-			mov ah, al
-			and ah, 01000000b
-			shr ah, 5
-			add bl, ah
-
-			mov ah, al
-			and ah, 10000000b
-			shr ah, 7
-			add bl, ah
-
-			mov al, bl*/
 
 
 			// swaps half nibbles
