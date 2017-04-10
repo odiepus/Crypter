@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\odiep\documents\visual studio 2015\projects\crypter\crypter\source.cpp(86): warning C4731: 'exCountLetters': frame pointer register 'ebp' modified by inline assembly code
+c:\users\odiep\documents\visual studio 2015\projects\crypter\crypter\source.cpp(95): warning C4731: 'exCountLetters': frame pointer register 'ebp' modified by inline assembly code
+  Crypter.vcxproj -> c:\Users\odiep\Documents\Visual Studio 2015\Projects\Crypter\Debug\Crypter.exe
